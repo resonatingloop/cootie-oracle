@@ -9,8 +9,8 @@
 ## Verified checkpoint
 
 field oracle no. 01 is complete as a local static implementation: canonical
-cipher calculation, paper-plex routing, animated consultation, textual receipt,
-printable svg, and the pages workflow agree on the field-01 sources.
+cipher calculation, paper-plex zone routing, animated consultation, textual
+receipt, printable svg, and the pages workflow agree on the field-01 sources.
 
 verification performed:
 
@@ -26,7 +26,7 @@ git diff --check
 evidence of success:
 
 ```text
-12 domain tests passed; 4 browser tests passed; production build passed;
+12 domain tests passed; 5 browser tests passed; production build passed;
 html, javascript, and css returned correctly beneath /cootie-oracle/ in the
 production preview; documentation check returned 0 errors; diff check returned clean.
 ```

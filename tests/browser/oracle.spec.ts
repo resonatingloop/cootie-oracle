@@ -15,7 +15,7 @@ test("consults the oracle without sending the offering elsewhere", async ({ page
 
   const result = page.locator("#result-panel");
   await expect(result).toBeVisible();
-  await expect(result.getByRole("heading", { name: "gate 5" })).toBeVisible();
+  await expect(result.getByRole("heading", { name: "zone 5" })).toBeVisible();
   await expect(page.locator("#result-value")).toHaveText("AQ / 229");
   await expect(page.locator("#result-arcana")).toHaveText("the lovers");
   await expect(page.locator("#result-passage")).toHaveText("first return · reversed");
@@ -46,6 +46,29 @@ test("keeps the reduced-motion phone path usable", async ({ page }, testInfo) =>
   await expect(page.locator("#result-passage")).toHaveText("first passage · upright");
   await expect(page.locator("#fold-count")).toHaveText("fold 1 / 1");
   await page.screenshot({ path: testInfo.outputPath("mobile-revealed.png"), fullPage: true });
+});
+
+test("keeps the fold control and performance together on a short laptop", async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto("./");
+  await page.getByLabel("phrase / name / allegation").fill("cootie oracle");
+
+  const button = page.getByRole("button", { name: "fold my fate" });
+  const buttonBox = await button.boundingBox();
+  expect(buttonBox).not.toBeNull();
+  expect(buttonBox!.y + buttonBox!.height).toBeLessThanOrEqual(768);
+
+  await button.click();
+  await page.waitForTimeout(900);
+
+  const catcherBox = await page.locator("#catcher-shell").boundingBox();
+  expect(catcherBox).not.toBeNull();
+  expect(catcherBox!.y).toBeGreaterThanOrEqual(0);
+  expect(catcherBox!.y + catcherBox!.height).toBeLessThanOrEqual(768);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  await page.screenshot({ path: testInfo.outputPath("laptop-folding.png") });
 });
 
 test("refuses zero without fabricating an address", async ({ page }) => {

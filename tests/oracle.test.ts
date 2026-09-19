@@ -15,10 +15,11 @@ describe("field oracle", () => {
     expect(first.calculation.value).toBe(229);
   });
 
-  it("binds the gate to its authored fortune", () => {
+  it("binds the zone to its authored fortune", () => {
     const reading = consultOracle("A", "ordinal", FIELD_01);
-    expect(reading.route.gate).toBe(1);
+    expect(reading.route.zone).toBe(1);
     expect(reading.fortune).toBe(FIELD_01.fortunes[0]);
+    expect(formatReceipt(reading)).toContain("zone 1");
     expect(formatReceipt(reading)).toContain("0 · the fool");
   });
 

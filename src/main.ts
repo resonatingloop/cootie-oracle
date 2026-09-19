@@ -25,7 +25,7 @@ const shell = requiredElement<HTMLDivElement>("#catcher-shell");
 const machineStatus = requiredElement<HTMLSpanElement>("#machine-status");
 const liveStatus = requiredElement<HTMLParagraphElement>("#live-status");
 const foldCount = requiredElement<HTMLSpanElement>("#fold-count");
-const gateReadout = requiredElement<HTMLElement>("#gate-readout");
+const zoneReadout = requiredElement<HTMLElement>("#zone-readout");
 const coreMark = requiredElement<HTMLSpanElement>("#core-mark");
 const resultPanel = requiredElement<HTMLElement>("#result-panel");
 const actionStatus = requiredElement<HTMLSpanElement>("#action-status");
@@ -73,7 +73,7 @@ function setFormBusy(busy: boolean): void {
 }
 
 function renderReading(reading: OracleReading): void {
-  requiredElement<HTMLElement>("#result-gate").textContent = String(reading.route.gate);
+  requiredElement<HTMLElement>("#result-zone").textContent = String(reading.route.zone);
   requiredElement<HTMLElement>("#result-offering").textContent = reading.offering;
   requiredElement<HTMLElement>("#result-value").textContent =
     `${reading.calculation.cipher.label} / ${reading.calculation.value}`;
@@ -116,10 +116,10 @@ form.addEventListener("submit", async (event) => {
   const thisConsultation = consultationNumber;
   setFormBusy(true);
   machineStatus.textContent = `${currentReading.calculation.cipher.label} ${currentReading.calculation.value} / addressed`;
-  gateReadout.textContent = `gate ${currentReading.route.gate}`;
-  coreMark.textContent = String(currentReading.route.gate);
+  zoneReadout.textContent = `zone ${currentReading.route.zone}`;
+  coreMark.textContent = String(currentReading.route.zone);
   liveStatus.textContent =
-    `value ${currentReading.calculation.value}; folding ${currentReading.route.gate} times.`;
+    `value ${currentReading.calculation.value}; folding ${currentReading.route.zone} times.`;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   await animateCatcher({
@@ -127,14 +127,14 @@ form.addEventListener("submit", async (event) => {
     route: currentReading.route,
     reducedMotion,
     onStep: (step) => {
-      foldCount.textContent = `fold ${step} / ${currentReading?.route.gate ?? "—"}`;
+      foldCount.textContent = `fold ${step} / ${currentReading?.route.zone ?? "—"}`;
     },
   });
 
   if (thisConsultation !== consultationNumber || !currentReading) return;
   machineStatus.textContent = "flap lifted / receipt issued";
   liveStatus.textContent =
-    `gate ${currentReading.route.gate} reveals ${currentReading.arcana.name}, ${currentReading.route.passageLabel}, ${currentReading.route.bearing}. ${currentReading.fortune}`;
+    `zone ${currentReading.route.zone} reveals ${currentReading.arcana.name}, ${currentReading.route.passageLabel}, ${currentReading.route.bearing}. ${currentReading.fortune}`;
   renderReading(currentReading);
   setFormBusy(false);
   resultPanel.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
@@ -188,7 +188,7 @@ requiredElement<HTMLButtonElement>("#reset-oracle").addEventListener("click", ()
   actionStatus.textContent = "";
   machineStatus.textContent = "awaiting offering";
   foldCount.textContent = "fold — / —";
-  gateReadout.textContent = "gate —";
+  zoneReadout.textContent = "zone —";
   coreMark.textContent = "☤";
   shell.dataset.state = "ready";
   offeringInput.focus();

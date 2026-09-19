@@ -11,7 +11,7 @@ for a positive safe integer `value`:
 
 ```text
 address = value - 1
-gate = (address mod 8) + 1
+zone = (address mod 8) + 1
 orbit = floor(address / 8)
 arcana = orbit mod 22
 return = floor(orbit / 22)
@@ -22,13 +22,13 @@ bearing = upright when return is even; reversed when return is odd
 `first return`, `second return`, and so on.
 
 the route is deterministic. the same edition, cipher identity, and value must
-produce the same gate, arcana, return, bearing, and fortune. raw phrase text
+produce the same zone, arcana, return, bearing, and fortune. raw phrase text
 does not secretly influence the result after calculation.
 
 `888` is the founding route vector:
 
 ```text
-gate 8
+zone 8
 orbit 110
 arcana 0 / the fool
 fifth return

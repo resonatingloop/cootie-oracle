@@ -36,9 +36,9 @@ export function consultOracle(
   if (calculation.value === 0) throw new ZeroValueOfferingError();
 
   const route = routeValue(calculation.value);
-  const fortune = edition.fortunes[route.gate - 1];
+  const fortune = edition.fortunes[route.zone - 1];
   if (!fortune) {
-    throw new RangeError(`edition ${edition.id} does not define gate ${route.gate}`);
+    throw new RangeError(`edition ${edition.id} does not define zone ${route.zone}`);
   }
 
   return {
@@ -57,7 +57,7 @@ export function formatReceipt(reading: OracleReading): string {
     `regarding: ${reading.offering}`,
     `${calculation.cipher.label}: ${calculation.value}`,
     "",
-    `gate ${route.gate}`,
+    `zone ${route.zone}`,
     `${arcana.numeral} · ${arcana.name}`,
     `${route.passageLabel} · ${route.bearing}`,
     "",

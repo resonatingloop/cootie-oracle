@@ -52,12 +52,12 @@ export function createPrintTemplate(edition: OracleEdition): string {
     .map(([x, y, rotation], index) => textBlock(fortunes[index] ?? "", x, y, rotation))
     .join("");
 
-  const gates = Array.from({ length: 8 }, (_, index) => {
+  const zones = Array.from({ length: 8 }, (_, index) => {
     const angle = -67.5 + index * 45;
     const radians = (angle * Math.PI) / 180;
     const x = 400 + Math.cos(radians) * 128;
     const y = 400 + Math.sin(radians) * 128;
-    return `<text class="gate" x="${x.toFixed(2)}" y="${y.toFixed(2)}">${index + 1}</text>`;
+    return `<text class="zone" x="${x.toFixed(2)}" y="${y.toFixed(2)}">${index + 1}</text>`;
   }).join("");
 
   const labels = edition.cipherIds.map((id) => CIPHERS[id].label);
@@ -65,7 +65,7 @@ export function createPrintTemplate(edition: OracleEdition): string {
   return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1100" role="img" aria-labelledby="sheet-title sheet-desc">
   <title id="sheet-title">${escapeXml(edition.name)} printable cootie catcher</title>
-  <desc id="sheet-desc">one square with four cipher flaps, eight numbered gates, eight fortunes, and marked fold lines</desc>
+  <desc id="sheet-desc">one square with four cipher flaps, eight numbered zones, eight fortunes, and marked fold lines</desc>
   <defs>
     <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <line x1="0" y1="0" x2="0" y2="8" stroke="#211d24" stroke-opacity=".12" stroke-width="2" />
@@ -77,7 +77,7 @@ export function createPrintTemplate(edition: OracleEdition): string {
       .title { font: 900 34px Arial, sans-serif; letter-spacing: -1px; fill: #211d24; }
       .small { font: 700 11px 'Courier New', monospace; letter-spacing: 1px; fill: #211d24; }
       .flap { font: 900 24px Arial, sans-serif; text-anchor: middle; fill: #211d24; }
-      .gate { font: 900 23px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #fffdf2; paint-order: stroke; stroke: #211d24; stroke-width: 7px; }
+      .zone { font: 900 23px Arial, sans-serif; text-anchor: middle; dominant-baseline: middle; fill: #fffdf2; paint-order: stroke; stroke: #211d24; stroke-width: 7px; }
       .fortune { font: 700 9px Georgia, serif; text-anchor: middle; fill: #211d24; }
     </style>
   </defs>
@@ -110,7 +110,7 @@ export function createPrintTemplate(edition: OracleEdition): string {
     <text class="flap" x="400" y="765" transform="rotate(180 400 765)">${escapeXml(labels[2] ?? "QWER")}</text>
     <text class="flap" x="51" y="407" transform="rotate(-90 51 407)">${escapeXml(labels[3] ?? "nQWER")}</text>
 
-    ${gates}
+    ${zones}
     ${fortuneText}
 
     <path class="fold" d="M0 0L800 800M800 0L0 800M400 0V800M0 400H800" />

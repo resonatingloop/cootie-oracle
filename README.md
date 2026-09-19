@@ -43,12 +43,12 @@ npm run build
 ```
 
 the test suite checks the four cipher mappings, deterministic route, all eight
-gates, all twenty-two arcana, error boundaries, and the founding numeric route.
+zones, all twenty-two arcana, error boundaries, and the founding numeric route.
 the browser suite exercises desktop, phone, reduced-motion, refusal, print, and
 download behavior in chrome:
 
 ```text
-888 → gate 8 → the fool → fifth return → reversed
+888 → zone 8 → the fool → fifth return → reversed
 ```
 
 ## print it

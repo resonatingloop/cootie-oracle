@@ -32,8 +32,8 @@ engine-backed cipher vectors for phrase calculation.
 ## acceptance
 
 - all four cipher mappings match canonical golden vectors;
-- `888` routes to gate 8, the fool, fifth return, reversed;
-- all eight gates and twenty-two arcana are reachable;
+- `888` routes to zone 8, the fool, fifth return, reversed;
+- all eight zones and twenty-two arcana are reachable;
 - repeated consultation is deterministic;
 - unsupported and zero-valued offerings fail visibly;
 - the browser, receipt, and print sheet share one domain/content source;

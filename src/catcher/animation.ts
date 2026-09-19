@@ -21,13 +21,13 @@ export async function animateCatcher({
   onStep(0);
 
   if (reducedMotion) {
-    onStep(route.gate);
+    onStep(route.zone);
     shell.dataset.state = "revealed";
     return;
   }
 
   await pause(220);
-  for (let step = 1; step <= route.gate; step += 1) {
+  for (let step = 1; step <= route.zone; step += 1) {
     shell.dataset.state = step % 2 === 1 ? "axis-x" : "axis-y";
     onStep(step);
     await pause(360);

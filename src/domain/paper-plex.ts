@@ -3,7 +3,7 @@ export type Bearing = "upright" | "reversed";
 export interface PaperPlexRoute {
   value: number;
   address: number;
-  gate: number;
+  zone: number;
   orbit: number;
   arcanaIndex: number;
   returnCount: number;
@@ -52,7 +52,7 @@ export function routeValue(value: number): PaperPlexRoute {
   }
 
   const address = value - 1;
-  const gate = (address % 8) + 1;
+  const zone = (address % 8) + 1;
   const orbit = Math.floor(address / 8);
   const arcanaIndex = orbit % 22;
   const returnCount = Math.floor(orbit / 22);
@@ -63,7 +63,7 @@ export function routeValue(value: number): PaperPlexRoute {
   return {
     value,
     address,
-    gate,
+    zone,
     orbit,
     arcanaIndex,
     returnCount,
