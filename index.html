@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="a deterministic gematria cootie catcher. offer a phrase, choose a cipher, and let the paper-plex fold your fate."
+    />
+    <meta name="theme-color" content="#f2ecd8" />
+    <title>cootie oracle · fold your fate</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">skip to the oracle</a>
+    <div class="paper-noise" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <div class="edition-stamp" aria-label="field oracle edition one">
+        <span>field oracle</span>
+        <strong>no. 01</strong>
+      </div>
+      <div class="title-lockup">
+        <p class="kicker">a low-tech routing algorithm with excellent gossip</p>
+        <h1><span>cootie</span><span>oracle</span></h1>
+        <p class="tagline">let the numerical tenant leave an irresponsible note about your future.</p>
+      </div>
+      <div class="sigil-stack" aria-hidden="true">
+        <span>☤</span>
+        <span>🗧</span>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="oracle-grid" aria-labelledby="consult-title">
+        <div class="control-sheet">
+          <div class="section-label"><span>01</span> address the paper</div>
+          <h2 id="consult-title">offer it something.</h2>
+          <p class="lede">
+            the phrase is the offering. the cipher is the lens. the value is the address.
+          </p>
+
+          <form id="oracle-form" novalidate>
+            <label class="offering-label" for="offering">phrase / name / allegation</label>
+            <div class="offering-wrap">
+              <input
+                id="offering"
+                name="offering"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="180"
+                placeholder="cootie oracle"
+                aria-describedby="offering-note form-error"
+                required
+              />
+              <span class="cursor-charm" aria-hidden="true">↳</span>
+            </div>
+            <p id="offering-note" class="field-note">nothing is uploaded, remembered, or improved.</p>
+
+            <fieldset>
+              <legend>choose the outer flap</legend>
+              <div id="cipher-grid" class="cipher-grid"></div>
+            </fieldset>
+
+            <p id="form-error" class="form-error" role="alert"></p>
+            <button class="consult-button" type="submit">
+              <span>fold my fate</span>
+              <span aria-hidden="true">☞</span>
+            </button>
+          </form>
+
+          <details class="method-note">
+            <summary>what kind of scam is this?</summary>
+            <p>
+              no random draw. the selected cipher calculates an address; paper-plex v1 deterministically
+              unspools its gate, major arcana, return, and bearing. the tarot relation is openly invented
+              here, not excavated from a suspiciously convenient pyramid.
+            </p>
+          </details>
+        </div>
+
+        <div class="stage-sheet">
+          <div class="section-label section-label--dark"><span>02</span> operate the hinge</div>
+          <div class="stage-readout" aria-hidden="true">
+            <span>paper-plex / field-01</span>
+            <span id="machine-status">awaiting offering</span>
+          </div>
+
+          <div class="catcher-stage">
+            <div id="catcher-shell" class="catcher-shell" data-state="ready" aria-hidden="true">
+              <div class="catcher-shadow"></div>
+              <div class="catcher-body">
+                <div class="flap flap--north"></div>
+                <div class="flap flap--east"></div>
+                <div class="flap flap--south"></div>
+                <div class="flap flap--west"></div>
+                <span class="flap-name flap-name--north">AQ</span>
+                <span class="flap-name flap-name--east">Ordinal</span>
+                <span class="flap-name flap-name--south">QWER</span>
+                <span class="flap-name flap-name--west">nQWER</span>
+                <span class="crease crease--one"></span>
+                <span class="crease crease--two"></span>
+                <div class="catcher-core">
+                  <span id="core-mark">☤</span>
+                </div>
+              </div>
+              <span class="registration registration--tl">+</span>
+              <span class="registration registration--br">+</span>
+            </div>
+
+            <div class="fold-telemetry" aria-live="polite" aria-atomic="true">
+              <span id="fold-count">fold — / —</span>
+              <strong id="gate-readout">gate —</strong>
+            </div>
+          </div>
+
+          <p id="live-status" class="sr-only" aria-live="polite"></p>
+          <div class="paired-note" aria-hidden="true">
+            <span>aq ↔ nqwer</span>
+            <span>ordinal ↔ qwer</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="result-panel" class="result-panel" aria-labelledby="result-title" tabindex="-1" hidden>
+        <div class="section-label"><span>03</span> lift the numbered flap</div>
+        <div class="result-grid">
+          <div class="address-ticket">
+            <p class="ticket-overline">the engine gives</p>
+            <h2 id="result-title">gate <span id="result-gate"></span></h2>
+            <dl>
+              <div><dt>offering</dt><dd id="result-offering"></dd></div>
+              <div><dt>cipher / value</dt><dd id="result-value"></dd></div>
+              <div><dt>orbit</dt><dd id="result-orbit"></dd></div>
+              <div><dt>edition</dt><dd>field-01</dd></div>
+            </dl>
+          </div>
+
+          <article class="arcana-card">
+            <div class="card-corners" aria-hidden="true"><span>☤</span><span>🗧</span></div>
+            <p id="result-numeral" class="arcana-numeral"></p>
+            <h3 id="result-arcana"></h3>
+            <p id="result-passage" class="arcana-bearing"></p>
+            <div class="card-axis" aria-hidden="true"></div>
+          </article>
+
+          <blockquote class="fortune-slip">
+            <p id="result-fortune"></p>
+            <footer>— the paper, under mild duress</footer>
+          </blockquote>
+        </div>
+
+        <div class="result-actions">
+          <button id="copy-receipt" class="utility-button" type="button">copy the receipt</button>
+          <button id="print-sheet-button" class="utility-button" type="button">print the oracle</button>
+          <button id="download-sheet" class="utility-button" type="button">download svg</button>
+          <button id="reset-oracle" class="utility-button utility-button--quiet" type="button">offer another</button>
+          <span id="action-status" role="status"></span>
+        </div>
+      </section>
+
+      <section class="law-strip" aria-labelledby="law-title">
+        <div>
+          <p class="section-label"><span>law</span> paper-plex v1</p>
+          <h2 id="law-title">the number already knew where it lived.</h2>
+        </div>
+        <code>
+          gate = ((value − 1) mod 8) + 1<br />
+          arcana = floor((value − 1) / 8) mod 22<br />
+          return = floor((value − 1) / 176)
+        </code>
+        <p>same edition + same cipher + same value = same fold-path. equal values are fold-twins.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>cootie-oracle / field-01</span>
+      <span>deterministic occult backend · playground frontend</span>
+      <a href="https://github.com/resonatingloop/cootie-oracle">source</a>
+    </footer>
+
+    <section id="print-sheet" class="print-sheet" aria-hidden="true"></section>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
