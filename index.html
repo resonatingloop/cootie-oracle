@@ -63,10 +63,6 @@
             </fieldset>
 
             <p id="form-error" class="form-error" role="alert"></p>
-            <button class="consult-button" type="submit">
-              <span>fold my fate</span>
-              <span aria-hidden="true">☞</span>
-            </button>
           </form>
 
           <details class="method-note">
@@ -87,25 +83,35 @@
           </div>
 
           <div class="catcher-stage">
-            <div id="catcher-shell" class="catcher-shell" data-state="ready" aria-hidden="true">
-              <div class="catcher-shadow"></div>
-              <div class="catcher-body">
-                <div class="flap flap--north"></div>
-                <div class="flap flap--east"></div>
-                <div class="flap flap--south"></div>
-                <div class="flap flap--west"></div>
-                <span class="flap-name flap-name--north">AQ</span>
-                <span class="flap-name flap-name--east">Ordinal</span>
-                <span class="flap-name flap-name--south">QWER</span>
-                <span class="flap-name flap-name--west">nQWER</span>
-                <span class="crease crease--one"></span>
-                <span class="crease crease--two"></span>
-                <div class="catcher-core">
-                  <span id="core-mark">☤</span>
+            <div id="catcher-shell" class="catcher-shell" data-state="ready">
+              <div class="catcher-paper" aria-hidden="true">
+                <div class="catcher-shadow"></div>
+                <div class="catcher-body">
+                  <div class="flap flap--north"></div>
+                  <div class="flap flap--east"></div>
+                  <div class="flap flap--south"></div>
+                  <div class="flap flap--west"></div>
+                  <span class="flap-name flap-name--north">AQ</span>
+                  <span class="flap-name flap-name--east">Ordinal</span>
+                  <span class="flap-name flap-name--south">QWER</span>
+                  <span class="flap-name flap-name--west">nQWER</span>
+                  <span class="crease crease--one"></span>
+                  <span class="crease crease--two"></span>
                 </div>
+                <span class="registration registration--tl">+</span>
+                <span class="registration registration--br">+</span>
               </div>
-              <span class="registration registration--tl">+</span>
-              <span class="registration registration--br">+</span>
+              <button
+                id="consult-oracle"
+                class="catcher-core"
+                type="submit"
+                form="oracle-form"
+                aria-label="fold my fate"
+                title="fold my fate"
+              >
+                <span id="core-mark">☤</span>
+              </button>
+              <span class="core-invocation" aria-hidden="true">fold my fate</span>
             </div>
 
             <div class="fold-telemetry" aria-live="polite" aria-atomic="true">

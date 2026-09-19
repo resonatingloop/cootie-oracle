@@ -11,7 +11,9 @@ test("consults the oracle without sending the offering elsewhere", async ({ page
   await page.goto("./");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("cootieoracle");
   await page.getByLabel("phrase / name / allegation").fill("cootie oracle");
-  await page.getByRole("button", { name: "fold my fate" }).click();
+  const caduceusButton = page.getByRole("button", { name: "fold my fate" });
+  await expect(caduceusButton).toHaveText("☤");
+  await caduceusButton.click();
 
   const result = page.locator("#result-panel");
   await expect(result).toBeVisible();
@@ -57,8 +59,16 @@ test("keeps the fold control and performance together on a short laptop", async 
 
   const button = page.getByRole("button", { name: "fold my fate" });
   const buttonBox = await button.boundingBox();
+  const catcherBoxBefore = await page.locator("#catcher-shell").boundingBox();
   expect(buttonBox).not.toBeNull();
+  expect(catcherBoxBefore).not.toBeNull();
   expect(buttonBox!.y + buttonBox!.height).toBeLessThanOrEqual(768);
+  expect(
+    Math.abs(
+      buttonBox!.x + buttonBox!.width / 2 -
+        (catcherBoxBefore!.x + catcherBoxBefore!.width / 2),
+    ),
+  ).toBeLessThan(2);
 
   await button.click();
   await page.waitForTimeout(900);

@@ -29,7 +29,7 @@ const zoneReadout = requiredElement<HTMLElement>("#zone-readout");
 const coreMark = requiredElement<HTMLSpanElement>("#core-mark");
 const resultPanel = requiredElement<HTMLElement>("#result-panel");
 const actionStatus = requiredElement<HTMLSpanElement>("#action-status");
-const submitButton = requiredElement<HTMLButtonElement>(".consult-button");
+const submitButton = requiredElement<HTMLButtonElement>("#consult-oracle");
 const printSheet = requiredElement<HTMLElement>("#print-sheet");
 
 let currentReading: OracleReading | null = null;
@@ -69,7 +69,10 @@ function setFormBusy(busy: boolean): void {
       control.disabled = busy;
     }
   }
-  submitButton.querySelector("span")!.textContent = busy ? "consulting the hinges" : "fold my fate";
+  submitButton.disabled = busy;
+  const label = busy ? "consulting the hinges" : "fold my fate";
+  submitButton.setAttribute("aria-label", label);
+  submitButton.title = label;
 }
 
 function renderReading(reading: OracleReading): void {

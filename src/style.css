@@ -410,7 +410,6 @@ fieldset {
   color: var(--red);
 }
 
-.consult-button,
 .utility-button {
   border: var(--rule);
   border-radius: 0;
@@ -425,19 +424,6 @@ fieldset {
   transition: transform 130ms ease, box-shadow 130ms ease, color 130ms ease, background 130ms ease;
 }
 
-.consult-button {
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 8px);
-  padding: 1rem 1.2rem;
-  font-size: 1.1rem;
-}
-
-.consult-button span:last-child {
-  font-size: 1.5rem;
-}
-
-.consult-button:hover,
 .utility-button:hover {
   color: var(--ink);
   background: var(--acid);
@@ -445,16 +431,10 @@ fieldset {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
-.consult-button:focus-visible,
 .utility-button:focus-visible,
 summary:focus-visible {
   outline: 4px solid var(--red);
   outline-offset: 3px;
-}
-
-.consult-button:disabled {
-  cursor: wait;
-  filter: grayscale(0.5);
 }
 
 .method-note {
@@ -498,6 +478,11 @@ summary:focus-visible {
   position: relative;
   width: min(30rem, 72vw);
   aspect-ratio: 1;
+}
+
+.catcher-paper {
+  position: absolute;
+  inset: 0;
   transform-style: preserve-3d;
 }
 
@@ -512,6 +497,7 @@ summary:focus-visible {
 
 .catcher-body {
   position: absolute;
+  z-index: 1;
   inset: 8%;
   transform: rotate(45deg);
   transform-style: preserve-3d;
@@ -607,22 +593,63 @@ summary:focus-visible {
 
 .catcher-core {
   position: absolute;
-  z-index: 6;
+  z-index: 10;
   top: 50%;
   left: 50%;
   display: grid;
   place-items: center;
   width: 24%;
+  padding: 0;
   aspect-ratio: 1;
+  appearance: none;
   color: var(--paper-light);
   background: var(--ink);
   border: 3px solid var(--paper-light);
   border-radius: 50%;
   box-shadow: 0 0 0 3px var(--ink);
+  cursor: pointer;
   font-family: var(--display);
   font-size: clamp(2rem, 7vw, 4.2rem);
-  transform: translate(-50%, -50%) rotate(-45deg);
-  transition: transform 360ms var(--ease-fold), background 220ms ease, color 220ms ease;
+  transform: translate(-50%, -50%);
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.core-invocation {
+  position: absolute;
+  z-index: 9;
+  top: 66%;
+  left: 50%;
+  padding: 0.2rem 0.38rem;
+  color: var(--acid);
+  background: var(--ink);
+  font-family: var(--mono);
+  font-size: clamp(0.55rem, 1vw, 0.7rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  transition: opacity 180ms ease;
+  white-space: nowrap;
+}
+
+.catcher-shell[data-state="ready"] .core-invocation {
+  opacity: 1;
+}
+
+.catcher-shell[data-state="ready"] .catcher-core:hover {
+  color: var(--ink);
+  background: var(--acid);
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.catcher-core:focus-visible {
+  outline: 4px solid var(--acid);
+  outline-offset: 7px;
+}
+
+.catcher-core:disabled {
+  cursor: wait;
 }
 
 .catcher-shell[data-state="axis-x"] .catcher-body {
@@ -665,7 +692,7 @@ summary:focus-visible {
 .catcher-shell[data-state="revealed"] .catcher-core {
   color: var(--ink);
   background: var(--paper-light);
-  transform: translate(-50%, -50%) rotate(-225deg) scale(1.42);
+  transform: translate(-50%, -50%) scale(1.42);
 }
 
 .catcher-shell[data-state="revealed"] .flap {
@@ -1051,10 +1078,6 @@ summary:focus-visible {
   .form-error {
     min-height: 0.65rem;
     margin: 0.25rem 0;
-  }
-
-  .consult-button {
-    padding: 0.7rem 1rem;
   }
 
   .method-note {
